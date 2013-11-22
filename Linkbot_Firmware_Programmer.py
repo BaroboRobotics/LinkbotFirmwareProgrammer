@@ -18,6 +18,7 @@ class Handler:
     self.filechooser = gtkbuilder.get_object("filechooserwidget1")
     self.spinner = gtkbuilder.get_object("spinner1")
     self.start_button = gtkbuilder.get_object("button_start")
+    self.elapsed_time_entry = gtkbuilder.get_object("entry1")
 
   def on_button_start_clicked(self, *args):
     model = self.combobox.get_model()
@@ -42,6 +43,7 @@ class Handler:
     self.start_button.set_sensitive(False)
     glib.timeout_add(200, self.check_progress_timeout_cb)
     self.spinner.start()
+    self.start_time = time.time()
     
   def check_progress_timeout_cb(self):
     rc = self.myprocess.poll()
@@ -51,6 +53,8 @@ class Handler:
       self.spinner.stop()
       self.start_button.set_sensitive(True)
       return False
+    self.elapsed_time_entry.set_text(
+        '{} seconds'.format(time.time() - self.start_time))
     return True
 
   def on_button_quit_clicked(self, *args):
