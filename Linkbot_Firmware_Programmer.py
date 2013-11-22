@@ -16,6 +16,7 @@ class Handler:
     self.liststore = gtkbuilder.get_object("liststore_ttyDevices")
     self.combobox = gtkbuilder.get_object("combobox1")
     self.filechooser = gtkbuilder.get_object("filechooserwidget1")
+    self.filechooser.set_filename('dof-v2.1.4.hex')
     self.spinner = gtkbuilder.get_object("spinner1")
     self.start_button = gtkbuilder.get_object("button_start")
     self.elapsed_time_entry = gtkbuilder.get_object("entry1")
